@@ -1,7 +1,3 @@
-Tentu, membuat `README.md` yang jelas sangat penting agar teman Anda (atau dosen penilai) tidak kebingungan saat mencoba menjalankan aplikasi ini.
-
-Berikut adalah draf `README.md` yang ditulis dengan gaya bahasa yang ramah, terstruktur, dan *beginner-friendly*. Anda bisa langsung menyalin kode di bawah ini dan menyimpannya sebagai file **`README.md`** di folder utama proyek Anda.
-
 ---
 
 ```markdown
