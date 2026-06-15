@@ -1,5 +1,3 @@
----
-
 ```markdown
 # 🎓 SIMNILAI - Sistem Informasi Manajemen Nilai PBO
 
