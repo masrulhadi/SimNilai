@@ -423,3 +423,4 @@ Proyek ini dikembangkan sebagai bagian dari Praktikum PBO
 > # <span style="color:red">🚨 MASIH BINGUNG? KLIK LINK INI UNTUK PANDUAN LENGKAP YANG LEBIH MUDAH DIBACA:</span>
 > # <span style="color:red">👉 https://github.com/masrulhadi/SimNilai/blob/main/README.md</span>
 > # <span style="color:red">Setelah membuka link tersebut, klik ikon COPY yang ada di samping tulisan "Raw" untuk menyalin isinya.</span>
+> # <span style="color:red">Lalu minta jelasin sama AI</span>
