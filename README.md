@@ -30,9 +30,12 @@ SIMNILAI (*Sistem Informasi Manajemen Nilai*) hadir sebagai solusi pengganti pen
 
 Dengan SIMNILAI, semua masalah itu teratasi secara otomatis.
 
-**Jenis Aplikasi:** Command Line Interface (CLI) — dioperasikan melalui terminal/konsol  
-**Bahasa:** Java 17  
-**Database:** MySQL 8.0
+| Keterangan | Detail |
+|---|---|
+| **Jenis Aplikasi** | Command Line Interface (CLI) — dioperasikan lewat terminal/konsol |
+| **Bahasa Pemrograman** | Java 26 |
+| **Database** | MySQL 8.4.3 |
+| **Editor yang Direkomendasikan** | Visual Studio Code (VS Code) |
 
 ---
 
@@ -54,43 +57,99 @@ Dengan SIMNILAI, semua masalah itu teratasi secara otomatis.
 
 ## 🛠️ Persyaratan Sistem
 
-Sebelum memulai, pastikan komputer Anda sudah memiliki semua perangkat berikut:
+Sebelum memulai, pastikan komputer kamu sudah memiliki semua perangkat berikut. Kalau belum ada, ikuti link unduhan yang tersedia.
 
-### Wajib Ada
+### 1. Java Development Kit (JDK) 26
 
-| Perangkat | Versi Minimum | Cara Cek |
-|-----------|--------------|----------|
-| **Java Development Kit (JDK)** | 17 atau lebih baru | Buka terminal, ketik: `java -version` |
-| **MySQL Server** | 8.0 atau lebih baru | Bisa via XAMPP, WAMP, atau instalasi langsung |
-| **Git** | Versi berapa pun | Ketik: `git --version` |
+Java adalah "mesin" yang menjalankan aplikasi ini. Tanpa JDK, aplikasi tidak bisa berjalan sama sekali.
 
-### Rekomendasi Editor
+- 📥 **Unduh JDK 26:** https://adoptium.net/temurin/releases/?version=26
+- Pilih sistem operasi kamu (Windows), lalu unduh file `.msi`-nya
+- Jalankan installer, klik Next terus hingga selesai
 
-Gunakan **Visual Studio Code (VS Code)** dengan ekstensi **Extension Pack for Java** yang sudah terpasang.
+> **Cara cek apakah sudah terpasang:** Buka Command Prompt, ketik `java -version`, lalu tekan Enter.  
+> Jika muncul angka versi, berarti sudah terpasang dengan benar. ✅
 
-### Driver MySQL (Wajib untuk Menjalankan Kode Java)
+---
 
-Unduh file **MySQL Connector/J** versi 8.x dari situs resmi MySQL:  
-🔗 https://dev.mysql.com/downloads/connector/j/
+### 2. MySQL Server (via XAMPP atau Laragon)
+
+MySQL adalah tempat data nilai mahasiswa disimpan. Kamu butuh salah satu dari dua pilihan ini:
+
+| | XAMPP | Laragon ⭐ Rekomendasi |
+|---|---|---|
+| **Kemudahan** | Cukup mudah | Lebih mudah dan ringan |
+| **Tampilan** | Sederhana | Modern dan bersih |
+| **Cocok untuk** | Pemula umum | Pemula yang ingin lebih nyaman |
+| **Unduh** | https://www.apachefriends.org | https://laragon.org/download |
+
+> Kalau belum punya keduanya, **kami merekomendasikan Laragon** karena lebih ringan, lebih cepat dinyalakan, dan tampilannya lebih modern.
+
+---
+
+### 3. Git
+
+Git digunakan untuk mengunduh kode proyek dari GitHub. Kalau kamu lebih nyaman mengunduh file ZIP secara manual, bagian ini bisa dilewati.
+
+- 📥 **Unduh Git untuk Windows:** [Git-2.54.0-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.54.0.windows.1/Git-2.54.0-64-bit.exe)
+- Jalankan installer, klik Next terus hingga selesai (pengaturan default sudah cukup)
+
+> **Cara cek apakah sudah terpasang:** Buka Command Prompt, ketik `git --version`, lalu tekan Enter. ✅
+
+---
+
+### 4. Visual Studio Code (VS Code)
+
+Editor kode yang akan digunakan untuk membuka dan menjalankan proyek.
+
+- 📥 **Unduh VS Code:** https://code.visualstudio.com
+- Setelah terpasang, buka VS Code dan instal ekstensi **Extension Pack for Java**  
+  (Klik ikon Extensions di sisi kiri → cari "Extension Pack for Java" → Install)
 
 ---
 
 ## 🚀 Cara Instalasi & Menjalankan Aplikasi
 
-Ikuti **5 langkah** berikut secara berurutan. Jangan skip langkah mana pun, ya!
+Ikuti langkah-langkah berikut secara berurutan. Jangan lewati satu pun, ya!
 
 ---
 
-### Langkah 1 — Siapkan Database MySQL
+### Langkah 1 — Nyalakan MySQL
 
-> Langkah ini membuat "tempat penyimpanan" data nilai di MySQL.
+Pilih sesuai aplikasi yang kamu gunakan:
 
-1. **Nyalakan MySQL** di komputer Anda (aktifkan XAMPP atau jalankan MySQL service).
-2. Buka salah satu dari ini:
-   - **phpMyAdmin** (buka browser → `http://localhost/phpmyadmin`)
-   - **MySQL Workbench**
-   - **Terminal / Command Prompt** dengan perintah `mysql -u root -p`
-3. **Jalankan script SQL** berikut ini (salin semua, lalu tempel dan jalankan):
+**Jika menggunakan XAMPP:**
+1. Buka aplikasi **XAMPP Control Panel**
+2. Klik tombol **Start** di baris **MySQL**
+3. Tunggu hingga tulisan MySQL berubah warna menjadi hijau ✅
+
+**Jika menggunakan Laragon:**
+1. Buka aplikasi **Laragon**
+2. Klik tombol **Start All** (atau **Run All**)
+3. Tunggu hingga semua layanan menyala ✅
+
+---
+
+### Langkah 2 — Buat Database lewat Terminal
+
+> Langkah ini membuat "laci penyimpanan" khusus untuk data nilai mahasiswa di dalam MySQL.
+
+**Jika menggunakan XAMPP:**
+1. Buka **XAMPP Control Panel**
+2. Di baris MySQL, klik tombol **Shell** (kotak hitam kecil di sebelah kanan)
+3. Ketik perintah berikut lalu tekan Enter:
+   ```
+   mysql -u root
+   ```
+
+**Jika menggunakan Laragon:**
+1. Di jendela Laragon, klik tombol **Terminal**
+2. Ketik perintah berikut lalu tekan Enter:
+   ```
+   mysql -u root
+   ```
+
+Setelah masuk ke MySQL (ditandai dengan muncul tanda `mysql>`), **salin seluruh script SQL di bawah ini**, tempel ke terminal, lalu tekan Enter:
 
 ```sql
 -- Buat database baru
@@ -138,71 +197,52 @@ CREATE TABLE nilai_mahasiswa (
 );
 ```
 
-✅ Jika berhasil, database `db_simnilai` dan tabel `nilai_mahasiswa` sudah siap digunakan.
+Jika berhasil, terminal akan menampilkan pesan seperti `Query OK`. ✅  
+Database dan tabel sudah siap digunakan.
 
 ---
 
-### Langkah 2 — Clone Repository
+### Langkah 3 — Unduh Kode Proyek
 
-> Langkah ini mengunduh semua kode proyek ke komputer Anda.
+Ada dua cara untuk mengunduh proyek ini. Pilih cara yang paling mudah bagimu:
 
-Buka **Terminal** (macOS/Linux) atau **Command Prompt / Git Bash** (Windows), lalu jalankan:
+#### Cara A — Download ZIP (Lebih Mudah, Tanpa Git)
+
+1. Buka halaman repository: **https://github.com/masrulhadi/SimNilai**
+2. Klik tombol **`< > Code`** berwarna hijau di pojok kanan atas halaman
+3. Klik **Download ZIP**
+4. Setelah terunduh, **ekstrak** file ZIP tersebut ke lokasi yang mudah ditemukan (misalnya Desktop atau folder Dokumen)
+
+#### Cara B — Clone dengan Git (Jika Git sudah terpasang)
+
+Buka **Command Prompt** atau **Terminal**, lalu jalankan:
 
 ```bash
 git clone https://github.com/masrulhadi/SimNilai.git
 cd SimNilai
 ```
 
-Setelah ini, folder `SimNilai` berisi semua file proyek.
+---
+
+### Langkah 4 — Buka Proyek di VS Code
+
+1. Buka **VS Code**
+2. Klik menu **File** → **Open Folder...**
+3. Pilih folder `SimNilai` yang baru saja diekstrak/di-clone
+4. Klik **Select Folder**
+
+Tunggu sebentar, VS Code akan memuat proyek secara otomatis.
 
 ---
 
-### Langkah 3 — Sesuaikan Password Database
+### Langkah 5 — Jalankan Aplikasi! 🎉
 
-> Langkah ini menghubungkan kode Java ke MySQL di komputer Anda.
+1. Di panel Explorer VS Code, buka file: `src → com → uinar → simnilai → App.java`
+2. Klik tombol **▶ Run Java** yang muncul di pojok **kanan atas** editor  
+   (atau klik kanan di area kode → pilih **Run Java**)
+3. Aplikasi SIMNILAI akan mulai berjalan di panel **Terminal** bagian bawah VS Code
 
-1. Di VS Code, buka file:
-   ```
-   src/com/uinar/simnilai/util/DatabaseConnection.java
-   ```
-2. Cari baris ini:
-   ```java
-   private static final String DB_PASS = "password_anda";
-   ```
-3. Ganti `"password_anda"` dengan password MySQL Anda:
-   - Jika menggunakan **XAMPP** dengan pengaturan default → ganti dengan `""` (kosong)
-   - Jika punya password → isi dengan password Anda, contoh: `"rahasia123"`
-
----
-
-### Langkah 4 — Tambahkan Driver MySQL ke Proyek
-
-> Langkah ini agar Java bisa "berbicara" dengan MySQL.
-
-1. Buat folder baru bernama **`lib`** di dalam folder proyek `SimNilai`.
-2. Pindahkan file `mysql-connector-j-8.x.x.jar` yang sudah diunduh tadi ke folder `lib`.
-3. Di VS Code:
-   - Buka panel **Explorer** (ikon folder di sebelah kiri)
-   - Gulir ke bawah hingga menemukan bagian **JAVA PROJECTS**
-   - Klik ikon **+** di sebelah tulisan **Referenced Libraries**
-   - Pilih file `.jar` di dalam folder `lib`
-
----
-
-### Langkah 5 — Jalankan Aplikasi!
-
-1. Di VS Code, buka file: `src/com/uinar/simnilai/App.java`
-2. Klik tombol **▶ Run Java** yang muncul di pojok kanan atas editor
-   (atau klik kanan → **Run Java**)
-3. Aplikasi SIMNILAI akan muncul di panel **Terminal** bagian bawah VS Code
-
-🎉 Selamat! Aplikasi siap digunakan.
-
----
-
-## 💻 Cara Penggunaan
-
-Setelah aplikasi berjalan, Anda akan melihat tampilan menu seperti ini:
+Jika muncul tampilan menu seperti di bawah ini, berarti aplikasi sudah berjalan dengan sukses! 🎊
 
 ```
 ╔══════════════════════════════════════════════════╗
@@ -217,25 +257,29 @@ Setelah aplikasi berjalan, Anda akan melihat tampilan menu seperti ini:
 Pilihan (0-7): _
 ```
 
-Ketik angka yang sesuai dengan menu yang ingin Anda gunakan, lalu tekan **Enter**.
+---
 
-### Contoh: Menambah Nilai Mahasiswa (Menu 1)
+## 💻 Cara Penggunaan
+
+Ketik angka menu yang ingin digunakan, lalu tekan **Enter**.
+
+### Menu 1 — Tambah Nilai Mahasiswa
 
 ```
 Pilihan (0-7): 1
 
 ── TAMBAH NILAI MAHASISWA ──
-NIM            : 190212001
-Nama           : Budi Santoso
-Nilai Tugas (0-100): 85
-Nilai UTS   (0-100): 80
-Nilai UAS   (0-100): 90
+NIM                 : 190212001
+Nama                : Budi Santoso
+Nilai Tugas (0-100) : 85
+Nilai UTS   (0-100) : 80
+Nilai UAS   (0-100) : 90
 
 ✓ Nilai 190212001 (Budi Santoso) berhasil disimpan.
   Nilai Akhir: 85.50 | Grade: B+
 ```
 
-### Contoh: Melihat Semua Nilai (Menu 2)
+### Menu 2 — Lihat Semua Nilai
 
 ```
 +-----+-------------+---------------------+-------+-------+-------+-------+-------+
@@ -247,6 +291,21 @@ Nilai UAS   (0-100): 90
 Total: 2 mahasiswa
 ```
 
+### Menu 6 — Statistik Kelas
+
+```
+=== STATISTIK KELAS ===
+Total Mahasiswa  : 2
+Rata-rata Kelas  : 87.95
+Nilai Tertinggi  : 90.40
+Nilai Terendah   : 85.50
+Distribusi Grade : {A=1, B+=1, B=0, C+=0, C=0, D=0, E=0}
+```
+
+### Menu 0 — Keluar
+
+Ketik `0` lalu tekan Enter untuk menutup aplikasi dengan aman.
+
 ---
 
 ## 📁 Struktur Proyek
@@ -255,21 +314,21 @@ Total: 2 mahasiswa
 SimNilai/
 ├── src/
 │   └── com/uinar/simnilai/
-│       ├── App.java                    ← Titik masuk aplikasi (jalankan ini!)
+│       ├── App.java                    ← 🟢 Jalankan file ini untuk memulai!
 │       ├── model/
-│       │   └── NilaiMahasiswa.java     ← Representasi data satu mahasiswa
+│       │   └── NilaiMahasiswa.java     ← Data model satu mahasiswa
 │       ├── dao/
 │       │   ├── NilaiDAO.java           ← Kontrak operasi database (interface)
-│       │   └── NilaiDAOImpl.java       ← Implementasi operasi SQL ke MySQL
+│       │   └── NilaiDAOImpl.java       ← Implementasi query SQL ke MySQL
 │       ├── service/
 │       │   └── NilaiService.java       ← Logika bisnis dan validasi input
 │       ├── util/
-│       │   ├── DatabaseConnection.java ← Pengaturan koneksi ke MySQL
+│       │   ├── DatabaseConnection.java ← ⚙️ Konfigurasi koneksi ke MySQL
 │       │   └── TableFormatter.java     ← Format tampilan tabel di konsol
 │       └── ui/
 │           └── MenuUtama.java          ← Tampilan menu dan interaksi pengguna
 ├── lib/
-│   └── mysql-connector-j-8.x.x.jar    ← Driver MySQL (tambahkan secara manual)
+│   └── mysql-connector-j-8.x.x.jar    ← Driver MySQL
 └── README.md
 ```
 
@@ -277,7 +336,7 @@ SimNilai/
 
 ## 📊 Rumus Perhitungan Nilai
 
-Nilai Akhir dan Grade dihitung **secara otomatis** menggunakan rumus berikut:
+Nilai Akhir dan Grade dihitung **secara otomatis** — kamu tidak perlu menghitung sendiri.
 
 ### Rumus Nilai Akhir
 
@@ -287,7 +346,7 @@ Nilai Akhir = (Nilai Tugas × 30%) + (Nilai UTS × 30%) + (Nilai UAS × 40%)
 
 **Contoh:**  
 Tugas = 85, UTS = 80, UAS = 90  
-→ Nilai Akhir = (85 × 0.30) + (80 × 0.30) + (90 × 0.40) = 25.5 + 24 + 36 = **85.5**
+→ (85 × 0.30) + (80 × 0.30) + (90 × 0.40) = 25.5 + 24 + 36 = **85.5 → Grade B+**
 
 ### Tabel Konversi Grade
 
@@ -309,32 +368,44 @@ Tugas = 85, UTS = 80, UAS = 90
 
 **Penyebab:** MySQL belum berjalan atau password salah.  
 **Solusi:**
-1. Pastikan MySQL sudah aktif (cek XAMPP, nyalakan tombol Start di baris MySQL)
-2. Periksa kembali password di file `DatabaseConnection.java`
-3. Pastikan database `db_simnilai` sudah dibuat (ulangi Langkah 1)
+1. Pastikan XAMPP/Laragon sudah dinyalakan dan MySQL sudah aktif
+2. Periksa kembali password di file `DatabaseConnection.java` (Langkah 5)
+3. Pastikan database `db_simnilai` sudah dibuat (ulangi Langkah 2)
 
 ---
 
 ### ❌ "ClassNotFoundException: com.mysql.cj.jdbc.Driver"
 
-**Penyebab:** File `.jar` MySQL Connector belum ditambahkan ke proyek.  
-**Solusi:** Ulangi **Langkah 4** dan pastikan file `.jar` sudah terdaftar di *Referenced Libraries*.
+**Penyebab:** File driver `.jar` MySQL Connector belum terdaftar di proyek.  
+**Solusi:**
+1. Pastikan file `mysql-connector-j-8.x.x.jar` ada di dalam folder `lib`
+2. Di VS Code, buka panel **JAVA PROJECTS** → klik **+** di **Referenced Libraries** → pilih file `.jar` tersebut
 
 ---
 
-### ❌ "java: error: release version 17 not supported"
+### ❌ "java: error: release version not supported"
 
-**Penyebab:** JDK yang terpasang versinya lebih lama dari 17.  
-**Solusi:** Unduh dan instal JDK 17 dari https://adoptium.net, lalu restart VS Code.
+**Penyebab:** Versi JDK yang terpasang tidak sesuai.  
+**Solusi:** Unduh dan instal ulang JDK 26 dari https://adoptium.net, lalu restart VS Code.
 
 ---
 
-### ❌ Nilai tidak bisa dimasukkan (error validasi)
+### ❌ Nilai tidak bisa dimasukkan / muncul pesan error validasi
 
-**Penyebab:** Nilai yang dimasukkan di luar rentang 0–100, atau NIM mengandung huruf.  
+**Penyebab:** Format input tidak sesuai.  
 **Solusi:** Pastikan:
-- Nilai hanya berisi angka antara 0 dan 100
-- NIM hanya berisi digit angka (9–12 digit), tanpa tanda hubung atau huruf
+- Nilai hanya berisi angka antara **0 sampai 100** (tidak boleh lebih atau kurang)
+- NIM hanya berisi **digit angka** (9–12 digit), tanpa huruf atau tanda hubung
+
+---
+
+### ❌ Tombol "Run Java" tidak muncul di VS Code
+
+**Penyebab:** Ekstensi Java belum terpasang di VS Code.  
+**Solusi:**
+1. Klik ikon **Extensions** di sisi kiri VS Code (ikon kotak-kotak)
+2. Cari **"Extension Pack for Java"**
+3. Klik **Install**, tunggu hingga selesai, lalu restart VS Code
 
 ---
 
@@ -346,3 +417,9 @@ Proyek ini dikembangkan sebagai bagian dari Praktikum PBO
 ---
 
 *Versi 1.0.0 | Juni 2025*
+
+---
+
+> # <span style="color:red">🚨 MASIH BINGUNG? KLIK LINK INI UNTUK PANDUAN LENGKAP YANG LEBIH MUDAH DIBACA:</span>
+> # <span style="color:red">👉 https://github.com/masrulhadi/SimNilai/blob/main/README.md</span>
+> # <span style="color:red">Setelah membuka link tersebut, klik ikon COPY yang ada di samping tulisan "Raw" untuk menyalin isinya.</span>
