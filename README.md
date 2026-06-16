@@ -270,6 +270,19 @@ Pilihan (0-7): _
 
 ---
 
+### Kalau Muncul Error Tambahkan Driver MySQL ke Proyek
+
+> Langkah ini agar Java bisa "berbicara" dengan MySQL.
+
+1. Buat folder baru bernama **`lib`** di dalam folder proyek `SimNilai`.
+2. Pindahkan file `mysql-connector-j-8.x.x.jar` yang sudah diunduh tadi ke folder `lib`.
+3. Di VS Code:
+   - Buka panel **Explorer** (ikon folder di sebelah kiri)
+   - Gulir ke bawah hingga menemukan bagian **JAVA PROJECTS**
+   - Klik ikon **+** di sebelah tulisan **Referenced Libraries**
+   - Pilih file `.jar` di dalam folder `lib`
+---
+
 ## 💻 Cara Penggunaan
 
 Ketik angka menu yang ingin digunakan, lalu tekan **Enter**.
