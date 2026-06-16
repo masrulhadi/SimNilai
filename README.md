@@ -149,46 +149,49 @@ Pilih sesuai aplikasi yang kamu gunakan:
    mysql -u root
    ```
 
-Setelah masuk ke MySQL (ditandai dengan muncul tanda `mysql>`), **salin seluruh script SQL di bawah ini**, tempel ke terminal, lalu tekan Enter:
-
+Setelah masuk ke MySQL (ditandai dengan muncul tanda `mysql>`), **salin seluruh script SQL di bawah ini satu persatu**, tempel ke terminal mysql, lalu tekan Enter:
+1. Buat Database
 ```sql
--- Buat database baru
 CREATE DATABASE IF NOT EXISTS db_simnilai 
   CHARACTER SET utf8mb4 
   COLLATE utf8mb4_unicode_ci;
-
--- Pilih database yang baru dibuat
+```
+2. Masuk/gunakan Database
+```sql
 USE db_simnilai;
-
--- Buat tabel untuk menyimpan data nilai mahasiswa
+```
+3. Buat table
+```sql
 CREATE TABLE nilai_mahasiswa (
-    id           INT AUTO_INCREMENT PRIMARY KEY,
-    nim          VARCHAR(15)    NOT NULL,
-    nama         VARCHAR(100)   NOT NULL,
-    nilai_tugas  DECIMAL(5,2)   NOT NULL DEFAULT 0.00,
-    nilai_uts    DECIMAL(5,2)   NOT NULL DEFAULT 0.00,
-    nilai_uas    DECIMAL(5,2)   NOT NULL DEFAULT 0.00,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nim VARCHAR(15) NOT NULL,
+    nama VARCHAR(100) NOT NULL,
 
-    -- Nilai akhir dan grade dihitung otomatis oleh database
-    nilai_akhir  DECIMAL(5,2) GENERATED ALWAYS AS (
-                   (nilai_tugas * 0.30) + (nilai_uts * 0.30) + (nilai_uas * 0.40)
-                 ) STORED,
-    grade        VARCHAR(3) GENERATED ALWAYS AS (
-                   CASE
-                     WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 87 THEN 'A'
-                     WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 78 THEN 'B+'
-                     WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 70 THEN 'B'
-                     WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 63 THEN 'C+'
-                     WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 56 THEN 'C'
-                     WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 45 THEN 'D'
-                     ELSE 'E'
-                   END
-                 ) STORED,
+    nilai_tugas DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    nilai_uts   DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+    nilai_uas   DECIMAL(5,2) NOT NULL DEFAULT 0.00,
 
-    created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    nilai_akhir DECIMAL(5,2) GENERATED ALWAYS AS (
+        (nilai_tugas * 0.30) + 
+        (nilai_uts   * 0.30) + 
+        (nilai_uas   * 0.40)
+    ) STORED,
 
-    -- Validasi: nilai harus antara 0 dan 100
+    grade VARCHAR(3) GENERATED ALWAYS AS (
+        CASE
+            WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 87 THEN 'A'
+            WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 78 THEN 'B+'
+            WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 70 THEN 'B'
+            WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 63 THEN 'C+'
+            WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 56 THEN 'C'
+            WHEN (nilai_tugas*0.30 + nilai_uts*0.30 + nilai_uas*0.40) >= 45 THEN 'D'
+            ELSE 'E'
+        END
+    ) STORED,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
     CONSTRAINT chk_tugas CHECK (nilai_tugas BETWEEN 0 AND 100),
     CONSTRAINT chk_uts   CHECK (nilai_uts   BETWEEN 0 AND 100),
     CONSTRAINT chk_uas   CHECK (nilai_uas   BETWEEN 0 AND 100),
@@ -199,6 +202,14 @@ CREATE TABLE nilai_mahasiswa (
 
 Jika berhasil, terminal akan menampilkan pesan seperti `Query OK`. ✅  
 Database dan tabel sudah siap digunakan.
+
+---
+
+> # <span style="color:red">🚨 MASIH BINGUNG? KLIK LINK INI UNTUK PANDUAN LENGKAP YANG LEBIH MUDAH DIBACA:</span>
+> # <span style="color:red">👉 https://github.com/masrulhadi/SimNilai/blob/main/README.md</span>
+> # <span style="color:red">Setelah membuka link tersebut, klik ikon COPY yang ada di samping tulisan "Raw" untuk menyalin isinya.</span>
+> # <span style="color:red">Lalu paste ke AI favoritmu minta jelasin sama AI. Bilang aja "Bantu aku untuk instalasi ini sampai bisa running!"</span>
+> # <span style="color:red">GUNAKAN AI DULU!"</span>
 
 ---
 
@@ -334,6 +345,14 @@ SimNilai/
 
 ---
 
+> # <span style="color:red">🚨 MASIH BINGUNG? KLIK LINK INI UNTUK PANDUAN LENGKAP YANG LEBIH MUDAH DIBACA:</span>
+> # <span style="color:red">👉 https://github.com/masrulhadi/SimNilai/blob/main/README.md</span>
+> # <span style="color:red">Setelah membuka link tersebut, klik ikon COPY yang ada di samping tulisan "Raw" untuk menyalin isinya.</span>
+> # <span style="color:red">Lalu paste ke AI favoritmu minta jelasin sama AI. Bilang aja "Bantu aku untuk instalasi ini sampai bisa running!"</span>
+> # <span style="color:red">GUNAKAN AI DULU!"</span>
+
+---
+
 ## 📊 Rumus Perhitungan Nilai
 
 Nilai Akhir dan Grade dihitung **secara otomatis** — kamu tidak perlu menghitung sendiri.
@@ -423,4 +442,5 @@ Proyek ini dikembangkan sebagai bagian dari Praktikum PBO
 > # <span style="color:red">🚨 MASIH BINGUNG? KLIK LINK INI UNTUK PANDUAN LENGKAP YANG LEBIH MUDAH DIBACA:</span>
 > # <span style="color:red">👉 https://github.com/masrulhadi/SimNilai/blob/main/README.md</span>
 > # <span style="color:red">Setelah membuka link tersebut, klik ikon COPY yang ada di samping tulisan "Raw" untuk menyalin isinya.</span>
-> # <span style="color:red">Lalu paste ke AI favoritmu minta jelasin sama AI</span>
+> # <span style="color:red">Lalu paste ke AI favoritmu minta jelasin sama AI. Bilang aja "Bantu aku untuk instalasi ini sampai bisa running!"</span>
+> # <span style="color:red">GUNAKAN AI DULU!"</span>
