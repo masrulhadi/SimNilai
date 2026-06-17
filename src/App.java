@@ -8,6 +8,7 @@ import com.uinar.simnilai.util.DatabaseConnection;
  * Merakitkan semua komponen (Dependency Injection manual).
  */
 public class App {
+
     public static void main(String[] args) {
         System.out.println("Menghubungkan ke database...");
         try {
