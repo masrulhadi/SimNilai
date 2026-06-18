@@ -119,4 +119,41 @@ public class NilaiService {
             return Collections.emptyList();
         }
     }
+
+    public void eksporKeCSV(String namaFile) {
+        try {
+            List<NilaiMahasiswa> daftar = dao.findAll();
+            
+            if (daftar.isEmpty()) {
+                System.out.println("[Service] Tidak ada data untuk diekspor.");
+                return;
+            }
+
+            // Menggunakan PrintWriter bawaan Java untuk menulis file
+            try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.File(namaFile))) {
+                // Tulis Header CSV
+                writer.println("NIM,Nama,Nilai Tugas,Nilai UTS,Nilai UAS,Nilai Akhir,Grade");
+                
+                // Tulis Data Baris per Baris
+                for (NilaiMahasiswa nm : daftar) {
+                    // Nama dibungkus tanda kutip ganda ("") agar aman jika ada nama yang mengandung koma
+                    writer.printf("%s,\"%s\",%.2f,%.2f,%.2f,%.2f,%s%n",
+                            nm.getNim(),
+                            nm.getNama(),
+                            nm.getNilaiTugas(),
+                            nm.getNilaiUTS(),
+                            nm.getNilaiUAS(),
+                            nm.getNilaiAkhir(),
+                            nm.getGrade());
+                }
+                System.out.println("[Service] Berhasil! Data telah diekspor ke file: " + namaFile);
+                
+            } catch (java.io.FileNotFoundException e) {
+                System.out.println("[Service] Error: Gagal membuat/menulis file. " + e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("[Service] Error DB saat ekspor: " + e.getMessage());
+        }
+    }
 }

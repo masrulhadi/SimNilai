@@ -18,7 +18,7 @@ public class MenuUtama {
     public void jalankan() {
         while (true) {
             tampilkanHeader();
-            int pilihan = inputPilihan(0, 7);
+            int pilihan = inputPilihan(0, 8);
             
             switch (pilihan) {
                 case 1 -> aksiTambah();
@@ -28,6 +28,7 @@ public class MenuUtama {
                 case 5 -> aksiHapus();
                 case 6 -> service.tampilkanStatistik();
                 case 7 -> aksiFilterGrade();
+                case 8 -> aksiEksporCSV();
                 case 0 -> {
                     System.out.println("Terima kasih. Sampai jumpa!");
                     DatabaseConnection.closeAll();
@@ -40,6 +41,8 @@ public class MenuUtama {
         }
     }
 
+    
+
     private void tampilkanHeader() {
         System.out.println("\n╔══════════════════════════════════════════════════╗");
         System.out.println("║       SIMNILAI — Sistem Manajemen Nilai PBO      ║");
@@ -48,9 +51,10 @@ public class MenuUtama {
         System.out.println("║  1. Tambah Nilai        │  5. Hapus Data         ║");
         System.out.println("║  2. Lihat Semua         │  6. Statistik Kelas    ║");
         System.out.println("║  3. Cari by NIM         │  7. Filter by Grade    ║");
-        System.out.println("║  4. Update Nilai        │  0. Keluar             ║");
+        System.out.println("║  4. Update Nilai        │  8. Ekspor ke CSV      ║"); // <-- Tambahan
+        System.out.println("║  0. Keluar              │                        ║");
         System.out.println("╚══════════════════════════════════════════════════╝");
-        System.out.print(" Pilihan (0-7): ");
+        System.out.print(" Pilihan (0-8): "); // <-- Ubah batas atas
     }
 
     private void aksiTambah() {
@@ -119,6 +123,18 @@ public class MenuUtama {
             System.out.println("Mahasiswa dengan grade " + grade + ":");
             TableFormatter.printTable(hasil);
         }
+    }
+
+    private void aksiEksporCSV() {
+        System.out.print("\nMasukkan nama file untuk backup (contoh: backup_nilai.csv): ");
+        String namaFile = scanner.nextLine().trim();
+        
+        // Memastikan file diakhiri dengan .csv
+        if (!namaFile.toLowerCase().endsWith(".csv")) {
+            namaFile += ".csv";
+        }
+        
+        service.eksporKeCSV(namaFile);
     }
 
     private int inputPilihan(int min, int max) {
